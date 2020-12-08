@@ -19,4 +19,10 @@ public class BootStartApplication {
 		return "home";
 	}
 
+	@RequestMapping("index")
+	public String index() {
+		service.index();
+		return "index";
+	}
+
 }
