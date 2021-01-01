@@ -1,7 +1,12 @@
 import React from 'react';
+import Button from '../components/common/Button';
 
 const BoardListPage = () => {
-  return <div>목록</div>;
+  return (
+    <div>
+      <Button>버튼</Button>
+    </div>
+  );
 };
 
 export default BoardListPage;

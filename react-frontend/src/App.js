@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { BoardListPage } from './pages/BoardListPage';
-import { LoginPage } from './pages/LoginPage';
-import { ReadPage } from './pages/ReadPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { WritePage } from './pages/WritePage';
+import BoardListPage from './pages/BoardListPage';
+import LoginPage from './pages/LoginPage';
+import ReadPage from './pages/ReadPage';
+import RegisterPage from './pages/RegisterPage';
+import WritePage from './pages/WritePage';
 
 const App = () => {
   return (
@@ -17,3 +17,5 @@ const App = () => {
     </>
   );
 };
+
+export default App;
