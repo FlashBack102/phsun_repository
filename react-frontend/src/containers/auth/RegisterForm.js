@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 const RegisterForm = ({ history }) => {
   const [error, setError] = useState('');
+  // const [data, setData] = useState('');
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
     form: auth.register,
@@ -28,6 +29,7 @@ const RegisterForm = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     const { username, password, passwordConfirm } = form;
     if ([username, password, passwordConfirm].includes('')) {
       setError('빈 칸을 입력해주세요');
@@ -44,35 +46,33 @@ const RegisterForm = ({ history }) => {
     dispatch(register({ username, password }));
   };
 
+  // Clear The Form, When The Component Firstly Rendering
   useEffect(() => {
     dispatch(initializeForm('register'));
   }, [dispatch]);
 
+  // Register Success Or Failure Process
   useEffect(() => {
-    if (authError) {
-      if (authError.response.status === 409) {
-        setError('이미 존재하는 계정명입니다.');
-        return;
-      }
-      setError('회원가입에 실패하였습니다.');
-      return;
-    }
-    if (auth) {
-      console.log('회원가입 성공');
-      console.log(auth);
-      dispatch(check());
+    // 'auth' is Responsed Value From The Spring Boot BackEnd Side
+    if (parseInt(auth) === 1) {
+      alert('회원가입이 완료되었습니다.');
     }
   }, [auth, authError, dispatch]);
 
   useEffect(() => {
     if (user) {
       history.push('/');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('LOCALSTORAGE FAILURE');
+      }
     }
   }, [history, user]);
 
   return (
     <AuthForm
-      type="regitser"
+      type="register"
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
